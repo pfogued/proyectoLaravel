@@ -42,45 +42,40 @@ class PersonajeController extends Controller
         // Actualizar personaje
         $personaje->update($request->validated());
 
-        // Actualizar las armas
         foreach ($request->armas as $armaData) {
-            // Si el arma tiene un ID (ya existe en la base de datos)
             if (isset($armaData['id'])) {
-                // Buscar el arma existente
                 $arma = Arma::find($armaData['id']);
                 if ($arma) {
-                    // Si el nombre del arma no ha cambiado, no hacemos validación de duplicado
-                    if ($arma->nombre != $armaData['nombre']) {
-                        // Verificamos que no exista otro personaje con el mismo nombre de arma
+                    // Permitir que el personaje mantenga su propia arma sin considerarla duplicada
+                    if ($arma->nombre !== $armaData['nombre']) {
                         $armaExistente = Arma::where('nombre', $armaData['nombre'])
                             ->whereNotNull('personaje_id')
-                            ->first();
+                            ->exists();
 
                         if ($armaExistente) {
-                            // Si existe otro personaje con ese nombre de arma, ignoramos el cambio
-                            continue;
+                            return redirect()->back()->withErrors(["El arma '{$armaData['nombre']}' ya está asignada a otro personaje."]);
                         }
                     }
 
-                    // Actualizamos el arma solo si pasa las validaciones
                     $arma->update($armaData);
                 }
             } else {
-                // Si no existe el ID, creamos un nuevo arma
-                // Verificamos que no exista un arma con el mismo nombre asignada a otro personaje
+                // Verificar si el arma ya está asignada a otro personaje antes de añadirla
                 $armaExistente = Arma::where('nombre', $armaData['nombre'])
                     ->whereNotNull('personaje_id')
-                    ->first();
+                    ->exists();
 
                 if (!$armaExistente) {
-                    // Si no existe, la creamos y la asociamos al personaje
                     $personaje->armas()->create($armaData);
+                } else {
+                    return redirect()->back()->withErrors(["El arma '{$armaData['nombre']}' ya está asignada a otro personaje."]);
                 }
             }
         }
 
         return redirect()->route('personajes.index')->with('success', 'Personaje actualizado con éxito.');
     }
+
 
 
 

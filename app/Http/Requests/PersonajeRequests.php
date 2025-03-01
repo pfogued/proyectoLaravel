@@ -33,7 +33,12 @@ class PersonajeRequests extends FormRequest
                 'required',
                 'string',
                 'max:55',
-
+                function ($attribute, $value, $fail) {
+                    $armaExistente = Arma::where('nombre', $value)->whereNotNull('personaje_id')->exists();
+                    if ($armaExistente) {
+                        $fail("El arma '{$value}' ya está asignada a otro personaje.");
+                    }
+                }
 
             ],
             'armas.*.tipo' => 'required|string',
