@@ -39,17 +39,20 @@ class PersonajeController extends Controller
 
     public function update(PersonajeRequests $request, Personaje $personaje)
     {
-        // Actualizar personaje
+        // Actualizamos el personaje
         $personaje->update($request->validated());
 
         foreach ($request->armas as $armaData) {
             if (isset($armaData['id'])) {
+                // Si el arma tiene un ID (ya existe), la buscamos en la base de datos
                 $arma = Arma::find($armaData['id']);
+
                 if ($arma) {
-                    // Permitir que el personaje mantenga su propia arma sin considerarla duplicada
+                    // Si el nombre del arma ha cambiado, verificamos que no exista el nuevo nombre en otro personaje
                     if ($arma->nombre !== $armaData['nombre']) {
                         $armaExistente = Arma::where('nombre', $armaData['nombre'])
-                            ->whereNotNull('personaje_id')
+                            ->whereNotNull('personaje_id') // Verificamos que no esté asignada a otro personaje
+                            ->where('id', '!=', $arma->id) // Excluimos el arma que estamos editando
                             ->exists();
 
                         if ($armaExistente) {
@@ -57,15 +60,17 @@ class PersonajeController extends Controller
                         }
                     }
 
+                    // Si no hay conflictos, actualizamos el arma
                     $arma->update($armaData);
                 }
             } else {
-                // Verificar si el arma ya está asignada a otro personaje antes de añadirla
+                // Si no tiene un ID, es un nuevo arma, verificamos si ya está asignada
                 $armaExistente = Arma::where('nombre', $armaData['nombre'])
                     ->whereNotNull('personaje_id')
                     ->exists();
 
                 if (!$armaExistente) {
+                    // Si no está asignada a otro personaje, la creamos
                     $personaje->armas()->create($armaData);
                 } else {
                     return redirect()->back()->withErrors(["El arma '{$armaData['nombre']}' ya está asignada a otro personaje."]);

@@ -34,17 +34,24 @@ class PersonajeRequests extends FormRequest
                 'string',
                 'max:55',
                 function ($attribute, $value, $fail) {
-                    $armaExistente = Arma::where('nombre', $value)->whereNotNull('personaje_id')->exists();
+                    // Verificamos si estamos editando un personaje existente
+                    $personajeId = $this->route('personaje') ? $this->route('personaje')->id : null;
+
+                    // Si estamos editando un arma, verificamos que no esté asignada a otro personaje
+                    $armaExistente = Arma::where('nombre', $value)
+                        ->whereNotNull('personaje_id') // Verificamos si está asignada a algún personaje
+                        ->where('personaje_id', '!=', $personajeId) // Ignoramos el personaje que estamos editando
+                        ->exists();
+
                     if ($armaExistente) {
                         $fail("El arma '{$value}' ya está asignada a otro personaje.");
                     }
                 }
-
             ],
             'armas.*.tipo' => 'required|string',
             'armas.*.daño' => 'required|integer',
             'armas.*.cadencia' => 'required|integer',
-            //'armas.*.personaje_id' => 'required|integer|exists:personajes,id', // con esto puedo añadir de momento
+    //'armas.*.personaje_id' => 'required|integer|exists:personajes,id', // con esto puedo añadir de momento
         ];
     }
 
