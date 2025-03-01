@@ -17,9 +17,13 @@
         <!-- Tipo -->
         <div class="mt-4">
             <x-input-label for="tipo" :value="__('Tipo')" />
-            <x-text-input id="tipo" class="block mt-1 w-full" type="text" name="tipo" :value="old('tipo')" required autocomplete="tipo" />
+            <select id="tipo" name="tipo" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>
+                <option value="Atacante" {{ old('tipo') == 'Atacante' ? 'selected' : '' }}>Atacante</option>
+                <option value="Defensor" {{ old('tipo') == 'Defensor' ? 'selected' : '' }}>Defensor</option>
+            </select>
             <x-input-error :messages="$errors->get('tipo')" class="mt-2" />
         </div>
+
 
         <!-- Unidad Especial -->
         <div class="mt-4">
