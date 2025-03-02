@@ -15,7 +15,11 @@
     </script>
 </head>
 <body>
-
+<!-- Botón de Logout -->
+<form action="{{ route('logout') }}" method="POST">
+    @csrf
+    <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+</form>
 <h1>Lista de Personajes</h1>
 <a href="{{ route('personajes.create') }}" class="btn btn-primary">Crear Personaje</a>
 

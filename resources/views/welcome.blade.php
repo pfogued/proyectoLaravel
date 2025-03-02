@@ -42,6 +42,18 @@
         .btn:hover {
             background-color: #0056b3;
         }
+        .btn-secondary {
+            background-color: #28a745;
+        }
+        .btn-secondary:hover {
+            background-color: #218838;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
     </style>
 </head>
 <body>
@@ -50,7 +62,14 @@
     <h1>Bienvenido a Rainbow Six</h1>
     <p>Explora y administra los personajes de este increíble juego.</p>
 
-    <a href="{{ route('personajes.index') }}" class="btn">Ver Personajes</a>
+    @auth
+        <!-- Si el usuario está autenticado, muestra el botón para ver los personajes -->
+        <a href="{{ route('personajes.index') }}" class="btn">Ver Personajes</a>
+    @else
+        <!-- Si el usuario no está autenticado, muestra los botones de login y registro -->
+        <a href="{{ route('login') }}" class="btn">Iniciar Sesión</a>
+        <a href="{{ route('register') }}" class="btn btn-secondary">Registrar</a>
+    @endauth
 </div>
 
 </body>
