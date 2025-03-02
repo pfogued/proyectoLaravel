@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Personajes</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script>
+        function confirmarEliminacion(event) {
+            event.preventDefault(); // Evita que el formulario se envíe automáticamente
+            if (confirm('¿Estás seguro de que quieres eliminar este personaje?')) {
+                event.target.closest('form').submit(); // Si confirma, envía el formulario
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -27,30 +35,8 @@
         <a href="{{ route('personajes.edit', $personaje) }}" class="btn btn-warning">Editar</a>
         <form action="{{ route('personajes.destroy', $personaje) }}" method="POST" style="display: inline;">
             @csrf @method('DELETE')
-            <button class="btn btn-danger">Eliminar</button>
+            <button class="btn btn-danger" onclick="confirmarEliminacion(event)">Eliminar</button>
         </form>
-        @section('content')
-            <div class="container">
-                <h1>Lista de Personajes</h1>
-                <a href="{{ route('personajes.create') }}" class="btn btn-primary">Nuevo Personaje</a>
-
-                @foreach ($personajes as $personaje)
-                    <div class="card mt-3">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $personaje->nombre }} ({{ ucfirst($personaje->tipo) }})</h5>
-                            <p><strong>Unidad Especial:</strong> {{ $personaje->unidad_especial }}</p>
-                            <p><strong>Vida:</strong> {{ $personaje->vida }} | <strong>Velocidad:</strong> {{ $personaje->velocidad }}</p>
-                            <a href="{{ route('personajes.edit', $personaje) }}" class="btn btn-warning">Editar</a>
-                            <form action="{{ route('personajes.destroy', $personaje) }}" method="POST" class="d-inline">
-                                @csrf @method('DELETE')
-                                <button class="btn btn-danger">Eliminar</button>
-                            </form>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        @endsection
-
     </div>
 @endforeach
 
