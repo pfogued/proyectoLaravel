@@ -21,14 +21,10 @@
 <div class="max-w-6xl mx-auto mt-10 p-6 bg-gray-800 rounded-lg shadow-lg border border-cyan-500">
     <!-- Header: Título y Cerrar Sesión -->
     <div class="flex justify-between items-center mb-6">
-        <h1 class="text-3xl font-bold text-yellow-400">Rainbow Six</h1>
         <div class="flex space-x-4">
             <!-- Botón de Cerrar sesión -->
             <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button type="submit" class="px-4 py-2 bg-red-600 hover:bg-red-500 text-white rounded-lg transition-all">
-                    Cerrar sesión
-                </button>
+
             </form>
         </div>
     </div>

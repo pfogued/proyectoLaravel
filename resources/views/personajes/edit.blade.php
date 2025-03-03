@@ -1,3 +1,4 @@
+<x-layouts.layout>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -111,3 +112,4 @@
 </body>
 </html>
 
+</x-layouts.layout>

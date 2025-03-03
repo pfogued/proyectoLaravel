@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-layouts.layout>
     <!-- Aquí agregamos el enlace al archivo CSS de Tailwind -->
     <head>
         <meta charset="UTF-8">
@@ -136,4 +136,4 @@
             armaIndex++;
         });
     </script>
-</x-guest-layout>
+</x-layouts.layout>
