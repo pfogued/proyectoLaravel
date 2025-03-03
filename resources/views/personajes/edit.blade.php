@@ -30,7 +30,8 @@
     @endif
 
     <!-- Formulario de edición -->
-    <form action="{{ route('personajes.update', $personaje) }}" method="POST">
+    <form action="{{ route('personajes.update', $personaje) }}" method="POST"
+          onsubmit="return confirm('¿Estás seguro de querer editar el personaje seleccionado?')">
         @csrf
         @method('PUT')
 
@@ -107,6 +108,7 @@
             </button>
         </div>
     </form>
+
 </div>
 
 </body>

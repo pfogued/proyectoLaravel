@@ -11,8 +11,13 @@
 
     <div class="max-w-4xl mx-auto mt-10 bg-gray-900 text-white p-8 rounded-lg shadow-lg border border-cyan-500">
         <h1 class="text-3xl font-bold text-center text-yellow-400 mb-6">CREAR PERSONAJE</h1>
+        <a href="{{ route('personajes.index') }}"
+           class="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-lg transition-all">
+            Volver a la Lista
+        </a>
 
         <form method="POST" action="{{ route('personajes.store') }}" class="space-y-4">
+
             @csrf
             @if($errors->any())
                 <ul class="bg-red-500 text-white p-3 rounded">

@@ -6,14 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Personajes</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script>
-        function confirmarEliminacion(event) {
-            event.preventDefault();
-            if (confirm('¿Estás seguro de que quieres eliminar este personaje?')) {
-                event.target.closest('form').submit();
-            }
-        }
-    </script>
 </head>
 <body class="bg-gray-900 text-white">
 
@@ -68,7 +60,7 @@
                     <form action="{{ route('personajes.destroy', $personaje) }}" method="POST">
                         @csrf @method('DELETE')
                         <button class="px-4 py-2 bg-red-600 hover:bg-red-500 text-white font-bold rounded-lg transition-all"
-                                onclick="confirmarEliminacion(event)">
+                                onclick="return confirm('¿Estás seguro de querer eliminar el personaje     seleccionado?')">
                             Eliminar
                         </button>
                     </form>
