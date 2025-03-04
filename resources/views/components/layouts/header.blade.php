@@ -8,18 +8,28 @@
     </h1>
 
     {{-- Laptop (Desktop) --}}
-    <div class="hidden md:flex flex-row space-x-4 items-center">
+    <div class="hidden md:flex flex-row space-x-6 items-center">
         @auth
-            <span class="user-highlight">{{ auth()->user()->name }}</span>
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button class="btn-3d bg-red-600 hover:bg-red-500">Cerrar sesión</button>
-            </form>
+            <div class="flex items-center space-x-3 bg-gray-800 p-2 rounded-lg shadow-lg border border-cyan-500">
+                <span class="text-lg font-semibold text-cyan-300 bg-gray-700 px-3 py-1 rounded-md shadow-inner">
+                    {{ auth()->user()->name }}
+                </span>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button class="px-4 py-2 text-white bg-red-600 hover:bg-red-500 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300">
+                        Cerrar sesión
+                    </button>
+                </form>
+            </div>
         @endauth
 
         @guest
-            <a class="btn-3d bg-green-600 hover:bg-green-500" href="{{ route('login') }}">Iniciar sesión</a>
-            <a class="btn-3d bg-blue-600 hover:bg-blue-500" href="{{ route('register') }}">Registrarse</a>
+            <a class="px-4 py-2 text-white bg-green-600 hover:bg-green-500 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300" href="{{ route('login') }}">
+                Iniciar sesión
+            </a>
+            <a class="px-4 py-2 text-white bg-blue-600 hover:bg-blue-500 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300" href="{{ route('register') }}">
+                Registrarse
+            </a>
         @endguest
     </div>
 
@@ -30,19 +40,31 @@
             &#9778;
         </label>
 
-        <div class="absolute hidden peer-checked:block bg-gray-800 p-4 rounded-lg shadow-lg flex flex-col space-y-2 right-5 top-16 border border-cyan-500">
+        <div class="absolute hidden peer-checked:block bg-gray-800 p-4 rounded-lg shadow-lg flex flex-col space-y-3 right-5 top-16 border border-cyan-500">
             @auth
-                <span class="user-highlight">{{ auth()->user()->name }}</span>
+                <div class="flex items-center space-x-3">
+                    <img class="w-10 h-10 rounded-full border-2 border-cyan-400" src="https://i.pravatar.cc/50" alt="Avatar">
+                    <span class="text-lg font-semibold text-cyan-300 bg-gray-700 px-3 py-1 rounded-md shadow-inner">
+                        {{ auth()->user()->name }}
+                    </span>
+                </div>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
-                    <button class="btn-3d bg-red-600 hover:bg-red-500 w-full">Cerrar sesión</button>
+                    <button class="w-full px-4 py-2 text-white bg-red-600 hover:bg-red-500 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300">
+                        Cerrar sesión
+                    </button>
                 </form>
             @endauth
 
             @guest
-                <a class="btn-3d bg-green-600 hover:bg-green-500 w-full" href="{{ route('login') }}">Iniciar sesión</a>
-                <a class="btn-3d bg-blue-600 hover:bg-blue-500 w-full" href="{{ route('register') }}">Registrarse</a>
+                <a class="w-full px-4 py-2 text-white bg-green-600 hover:bg-green-500 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300" href="{{ route('login') }}">
+                    Iniciar sesión
+                </a>
+                <a class="w-full px-4 py-2 text-white bg-blue-600 hover:bg-blue-500 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300" href="{{ route('register') }}">
+                    Registrarse
+                </a>
             @endguest
         </div>
     </div>
 </header>
+
