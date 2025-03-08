@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Personaje;
+use App\Models\Arma;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +14,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Crear 10 personajes y asociarles entre 1 y 3 armas
+        Personaje::factory(10)->create()->each(function ($personaje) {
+            Arma::factory(rand(1, 3))->create(['personaje_id' => $personaje->id]);
+        });
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // Crear un usuario de prueba
+        //User::factory()->create([
+         //   'name' => 'Test User',
+           // 'email' => 'test@example.com',
+        //]);
     }
 }

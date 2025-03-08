@@ -3,6 +3,7 @@
 use App\Http\Controllers\PersonajeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LanguageController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -39,6 +40,10 @@ Route::middleware('auth')->group(function () {
     Route::put('/personajes/{personaje}', [PersonajeController::class, 'update'])->name('personajes.update'); // Actualizar personaje
     Route::delete('/personajes/{personaje}', [PersonajeController::class, 'destroy'])->name('personajes.destroy'); // Eliminar personaje
 });
+
+
+//IDIOMAS
+Route::get("language/{locale}", LanguageController::class)->name('language');
 
 // Requiere la autenticación para la parte de login y registro (deshabilitada por ahora)
 require __DIR__.'/auth.php';

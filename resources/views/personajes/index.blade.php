@@ -69,7 +69,5 @@
         @endforeach
     </div>
 </div>
-
-</body>
 </html>
 </x-layouts.layout>
