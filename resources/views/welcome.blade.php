@@ -28,17 +28,6 @@
             </a>
         @endauth
     </div>
-    <div class="dropdown-content">
-        <form action="{{ route('language', 'es') }}" method="GET" style="display:inline;">
-            <button id="top" type="submit">🇪🇸 {{ __('messages.es') }}</button>
-        </form>
-        <form action="{{ route('language', 'en') }}" method="GET" style="display:inline;">
-            <button id="middle" type="submit">🇬🇧 {{ __('messages.en') }}</button>
-        </form>
-        <form id="bottom" action="{{ route('language', 'fr') }}" method="GET" style="display:inline;">
-            <button id="bottom" type="submit">🇫🇷 {{ __('messages.fr') }}</button>
-        </form>
-    </div>
 </div>
 
 </body>

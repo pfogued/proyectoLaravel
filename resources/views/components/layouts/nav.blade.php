@@ -1,12 +1,8 @@
-<!-- resources/views/components/layouts/nav.blade.php -->
 <nav class="bg-gray-900 text-white py-4 px-6 shadow-md border-b border-cyan-500">
     <ul class="flex justify-center space-x-8 text-lg font-semibold">
-        <li><a href="https://www.ubisoft.com/es-es/game/rainbow-six/siege/game-info/maps" class="nav-link" target="_blank">Mapas</a></li>
-        <li><a href="https://www.ubisoft.com/es-es/esports/rainbow-six/siege" class="nav-link" target="_blank">Esports</a></li>
-        <li><a href="https://www.ubisoft.com/es-es/game/rainbow-six/siege/marketplace?route=home" class="nav-link" target="_blank">MarketPlace</a></li>
-
-
-
+        <li><a href="https://www.ubisoft.com/es-es/game/rainbow-six/siege/game-info/maps" class="nav-link" target="_blank">{{ __('messages.maps') }}</a></li>
+        <li><a href="https://www.ubisoft.com/es-es/esports/rainbow-six/siege" class="nav-link" target="_blank">{{ __('messages.esports') }}</a></li>
+        <li><a href="https://www.ubisoft.com/es-es/game/rainbow-six/siege/marketplace?route=home" class="nav-link" target="_blank">{{ __('messages.marketplace') }}</a></li>
     </ul>
 </nav>
 

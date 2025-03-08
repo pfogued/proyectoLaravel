@@ -9,15 +9,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class LanguageMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
     public function handle(Request $request, Closure $next): Response
     {
-        if (session()->has('locale')) {
-            App::setLocale(session('locale'));
+        if (session()->has("locale")) {
+            App::setLocale(session()->get("locale"));
+        } else {
+            App::setLocale(config('app.locale', 'es')); // Idioma por defecto
+            session()->put('locale', config('app.locale', 'es'));
         }
         return $next($request);
     }

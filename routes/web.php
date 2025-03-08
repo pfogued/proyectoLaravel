@@ -43,7 +43,19 @@ Route::middleware('auth')->group(function () {
 
 
 //IDIOMAS
-Route::get("language/{locale}", LanguageController::class)->name('language');
+Route::get("lang/{language}", LanguageController::class)->name('language');
+
+Route::post('language/{lang}', function ($lang) {
+    // Verifica si el idioma es válido (en o es)
+    if (in_array($lang, ['en', 'es','fr'])) {
+        session(['locale' => $lang]); // Guarda el idioma en la sesión
+    }
+    return redirect()->back(); // Vuelve a la página anterior
+})->name('language.switch');
+
+
+
+
 
 // Requiere la autenticación para la parte de login y registro (deshabilitada por ahora)
 require __DIR__.'/auth.php';

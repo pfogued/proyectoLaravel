@@ -17,7 +17,7 @@
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button class="px-4 py-2 text-white bg-red-600 hover:bg-red-500 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300">
-                        Cerrar sesión
+                        {{ __('messages.logout') }}
                     </button>
                 </form>
             </div>
@@ -25,10 +25,10 @@
 
         @guest
             <a class="px-4 py-2 text-white bg-green-600 hover:bg-green-500 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300" href="{{ route('login') }}">
-                Iniciar sesión
+                {{ __('messages.login') }}
             </a>
             <a class="px-4 py-2 text-white bg-blue-600 hover:bg-blue-500 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300" href="{{ route('register') }}">
-                Registrarse
+                {{ __('messages.register') }}
             </a>
         @endguest
     </div>
@@ -51,20 +51,36 @@
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button class="w-full px-4 py-2 text-white bg-red-600 hover:bg-red-500 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300">
-                        Cerrar sesión
+                        {{ __('messages.logout') }}
                     </button>
                 </form>
             @endauth
 
             @guest
                 <a class="w-full px-4 py-2 text-white bg-green-600 hover:bg-green-500 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300" href="{{ route('login') }}">
-                    Iniciar sesión
+                    {{ __('messages.login') }}
                 </a>
                 <a class="w-full px-4 py-2 text-white bg-blue-600 hover:bg-blue-500 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300" href="{{ route('register') }}">
-                    Registrarse
+                    {{ __('messages.register') }}
                 </a>
             @endguest
         </div>
     </div>
-</header>
 
+    {{-- Selector de idioma --}}
+    <div class="flex items-center space-x-3">
+        <form action="{{ route('language.switch', ['lang' => 'es']) }}" method="POST">
+            @csrf
+            <button type="submit" class="text-white hover:text-gray-300">{{ __('messages.spanish') }}</button>
+        </form>
+        <form action="{{ route('language.switch', ['lang' => 'en']) }}" method="POST">
+            @csrf
+            <button type="submit" class="text-white hover:text-gray-300">{{ __('messages.english') }}</button>
+        </form>
+        <form action="{{ route('language.switch', ['lang' => 'fr']) }}" method="POST">
+            @csrf
+            <button type="submit" class="text-white hover:text-gray-300">{{ __('messages.français') }}</button>
+        </form>
+    </div>
+
+</header>

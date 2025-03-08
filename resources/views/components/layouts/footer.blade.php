@@ -3,12 +3,12 @@
     <div class="container mx-auto text-center">
         <!-- Logo y Nombre -->
         <div class="flex justify-center items-center mb-4">
-            <img src="{{ asset('images/r6Logo.png') }}" alt="Rainbow Six Logo" class="w-12 h-12 mr-3">
-            <h2 class="text-2xl font-bold text-yellow-400">Rainbow Six Siege</h2>
+            <img src="{{ asset('images/r6Logo.png') }}" alt="{{ __('messages.logo_alt_text') }}" class="w-12 h-12 mr-3">
+            <h2 class="text-2xl font-bold text-yellow-400">{{ __('messages.game_name') }}</h2>
         </div>
 
         <!-- Derechos -->
-        <p class="text-gray-400 text-sm">&copy; {{ date('Y') }} Rainbow Six. Todos los derechos reservados.</p>
+        <p class="text-gray-400 text-sm">&copy; {{ date('Y') }} {{ __('messages.rights_reserved') }}</p>
     </div>
 </footer>
 
