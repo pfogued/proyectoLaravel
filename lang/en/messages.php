@@ -58,6 +58,17 @@ return [
     'game_name' => 'Rainbow Six Siege',
     'logo_alt_text' => 'Rainbow Six Logo',
     'rights_reserved' => 'Rainbow Six. All rights reserved.',
+    'login' => 'Login',
+    'email' => 'Email Address',
+    'password' => 'Password',
+    'remember_me' => 'Remember Me',
+    'forgot_password' => 'Forgot your password?',
+    'create_account' => 'Create Account',
+    'name' => 'Name',
+    'email' => 'Email',
+    'password' => 'Password',
+    'confirm_password' => 'Confirm Password',
+    'already_have_account' => 'Already have an account? Log in',
 
 
 ];

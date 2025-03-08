@@ -58,6 +58,17 @@ return [
     'game_name' => 'Rainbow Six Siege',
     'logo_alt_text' => 'Logo de Rainbow Six',
     'rights_reserved' => 'Rainbow Six. Todos los derechos reservados.',
+    'login' => 'Iniciar Sesión',
+    'email' => 'Correo Electrónico',
+    'password' => 'Contraseña',
+    'remember_me' => 'Recuérdame',
+    'forgot_password' => '¿Olvidaste tu contraseña?',
+    'create_account' => 'Crear Cuenta',
+    'name' => 'Nombre',
+    'email' => 'Correo Electrónico',
+    'password' => 'Contraseña',
+    'confirm_password' => 'Confirmar Contraseña',
+    'already_have_account' => '¿Ya tienes una cuenta? Inicia sesión',
 
 
 ];

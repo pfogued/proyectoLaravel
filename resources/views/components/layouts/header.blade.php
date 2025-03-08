@@ -68,18 +68,24 @@
     </div>
 
     {{-- Selector de idioma --}}
-    <div class="flex items-center space-x-3">
+    <div class="flex items-center space-x-3 bg-gray-800 p-2 rounded-lg shadow-lg border border-cyan-500">
         <form action="{{ route('language.switch', ['lang' => 'es']) }}" method="POST">
             @csrf
-            <button type="submit" class="text-white hover:text-gray-300">{{ __('messages.spanish') }}</button>
+            <button type="submit" class="px-4 py-2 text-white bg-cyan-600 hover:bg-cyan-500 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300">
+                🇪🇸 {{ __('messages.spanish') }}
+            </button>
         </form>
         <form action="{{ route('language.switch', ['lang' => 'en']) }}" method="POST">
             @csrf
-            <button type="submit" class="text-white hover:text-gray-300">{{ __('messages.english') }}</button>
+            <button type="submit" class="px-4 py-2 text-white bg-cyan-600 hover:bg-cyan-500 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300">
+                🇬🇧 {{ __('messages.english') }}
+            </button>
         </form>
         <form action="{{ route('language.switch', ['lang' => 'fr']) }}" method="POST">
             @csrf
-            <button type="submit" class="text-white hover:text-gray-300">{{ __('messages.français') }}</button>
+            <button type="submit" class="px-4 py-2 text-white bg-cyan-600 hover:bg-cyan-500 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300">
+                🇫🇷 {{ __('messages.français') }}
+            </button>
         </form>
     </div>
 
