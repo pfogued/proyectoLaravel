@@ -17,6 +17,9 @@ class PersonajeController extends Controller
     public function create()
     {
         return view('personajes.create');
+        session()->flash("mensaje", "Personaje $personaje->nombre creado");
+
+
     }
 
     public function store(PersonajeRequests $request)
@@ -28,13 +31,14 @@ class PersonajeController extends Controller
         foreach ($request->armas as $armaData) {
             $personaje->armas()->create($armaData);
         }
-
-        return redirect()->route('personajes.index')->with('success', 'Personaje creado con éxito.');
+        session()->flash("mensaje", "Personaje $personaje->nombre agregado");
+        return redirect()->route('personajes.index');
     }
 
     public function edit(Personaje $personaje)
     {
         return view('personajes.edit', compact('personaje'));
+
     }
 
     public function update(PersonajeRequests $request, Personaje $personaje)
@@ -77,8 +81,8 @@ class PersonajeController extends Controller
                 }
             }
         }
-
-        return redirect()->route('personajes.index')->with('success', 'Personaje actualizado con éxito.');
+        session()->flash("mensaje", "Personaje $personaje->nombre editado");
+        return redirect()->route('personajes.index');
     }
 
 
@@ -90,6 +94,8 @@ class PersonajeController extends Controller
         $personaje->armas()->delete();
         $personaje->delete();
 
-        return redirect()->route('personajes.index')->with('success', 'Personaje eliminado.');
+        session()->flash("mensaje", "Personaje $personaje->nombre eliminado");
+        return redirect()->route('personajes.index');
+
     }
 }

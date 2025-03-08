@@ -83,4 +83,10 @@
         </form>
     </div>
 
+    @if (session('mensaje'))
+        <div style="background-color: green; color: white; padding: 10px; margin-bottom: 10px; text-align: center;">
+            {{ session('mensaje') }}
+        </div>
+    @endif
+
 </header>
